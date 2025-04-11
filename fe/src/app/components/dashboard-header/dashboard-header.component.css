@@ -1,0 +1,16 @@
+.headerContainer {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  background-color: white;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.flexed {
+  justify-content: flex-end;
+}
+
+.separator {
+  background-color: rgb(0, 0, 0, 0.3);
+}

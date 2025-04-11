@@ -1,0 +1,54 @@
+<div class="tableContainer">
+  <table>
+    <tr class="rH">
+      <th>Id</th>
+      <th>Titolo</th>
+      <th>Priorità</th>
+      <th>Stato</th>
+      <th>Data</th>
+      <th>Ultimo aggiornamento</th>
+      <th>Scadenza</th>
+      <th>Commenti</th>
+    </tr>
+    <tr class="row transition" (click)="openModal(r)" *ngFor="let r of reports">
+      <td>{{ r.codiceSegnalazione }}</td>
+      <td>{{ r.titolo }}</td>
+      <td>
+        <div
+          class="statusBox"
+          [ngClass]="
+            r.priorita == 'Urgente' || r.stato
+              ? 'lightRedBg textRed'
+              : r.priorita == 'Moderata'
+              ? 'lightYellowBg textYellow'
+              : 'priority'
+          "
+        >
+          {{ r.stato ? "Completata" : r.priorita }}
+        </div>
+      </td>
+      <td>
+        <div
+          class="statusBox"
+          [ngStyle]="{
+            backgroundColor: !r.stato ? '#E2F5F4' : '#FFC9C9',
+            color: !r.stato ? '#12B3A8' : '#8B1313'
+          }"
+        >
+          {{ util.boolToString(r.stato) }}
+        </div>
+      </td>
+      <td>{{ util.dateToString(r.dataCreazione).split(",")[0] }}</td>
+      <td>{{ util.dateToString(r.dataAggiornamento).split(",")[0] }}</td>
+      <td>{{ util.dateToString(r.scadenza).split(",")[0] }}</td>
+      <td>
+        <div class="flexAligned" style="gap: 0.25rem">
+          <ng-icon name="lucideMessageCircle" size="20" color="#a4a4a4" />
+          <p style="color: #a4a4a4; font-weight: 500; margin-top: 1px">
+            {{ r.commenti.length }}
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

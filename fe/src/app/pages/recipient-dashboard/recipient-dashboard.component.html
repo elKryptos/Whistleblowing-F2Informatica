@@ -1,0 +1,72 @@
+<div class="dashboardContainer flexed gapMid">
+  <app-sidebar
+    [items]="items"
+    [tabSelected]="tabSelected"
+    (e)="onTab($event)"
+  />
+  <div
+    class="dashboardContentBox"
+    [ngStyle]="{ overflowY: modalVisible ? 'hidden' : 'scroll' }"
+  >
+    <!-- MODALS -->
+    <app-report-view-modal
+      *ngIf="modalVisible == 'reportView'"
+      (cancel)="onClose($event)"
+      (refresh)="onReportTab(reportTabSelected)"
+      [report]="reportSelected"
+    />
+
+    <!-- HEADER -->
+    <app-dashboard-header />
+
+    <!-- SEGNALAZIONI -->
+    <div class="contentBox" *ngIf="tabSelected == 'Segnalazioni'">
+      <div class="flexCol gapSm">
+        <div
+          class="flexAligned"
+          style="width: 100%; justify-content: space-between"
+        >
+          <app-reports-tabs
+            [tabs]="reportsTabs"
+            (e)="onReportTab($event)"
+            [tabSelected]="reportTabSelected"
+          />
+
+          <app-search-bar />
+        </div>
+        <app-reports-table
+          (e)="onOpen($event)"
+          [reports]="reports"
+          (rs)="reportSelected = $event"
+        />
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="separator" *ngIf="tabSelected == 'Statistiche'"></div>
+    <div
+      class="flexCol gapSm"
+      *ngIf="tabSelected == 'Statistiche'"
+      style="width: 100%; height: calc(100% - 5rem)"
+    >
+      <app-overview />
+
+      <div
+        class="flexed"
+        style="
+          height: 100%;
+          width: 100%;
+          gap: 1.5rem;
+          justify-content: space-between;
+        "
+      >
+        <div style="width: 80%">
+          <app-chart-preview />
+        </div>
+        <div style="width: 20%">
+          <app-status-reports />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="flexCol">
+  <div
+    class="header flexAligned"
+    [ngStyle]="{ borderRadius: !commentsOpen ? '10px' : '' }"
+    (click)="commentsOpen = !commentsOpen"
+  >
+    <h4 class="textGray textSm">Commenti</h4>
+    <ng-icon
+      name="lucideChevronDown"
+      size="20"
+      color="#272727"
+      [ngStyle]="{ transform: commentsOpen ? 'rotate(180deg)' : 'rotate(0)' }"
+    />
+  </div>
+  <div class="content flexCol gapMid" *ngIf="commentsOpen">
+    <form
+      class="flexCol gapSm"
+      (submit)="createComment()"
+      *ngIf="!report.stato"
+    >
+      <textarea
+        name="newComment"
+        class="textarea"
+        style="border: 1px solid #a4a4a4"
+        [(ngModel)]="newComment.testo"
+        [value]="newComment.testo"
+      ></textarea>
+      <button class="mainButton textWhite mainBlueBg">Invia</button>
+    </form>
+
+    <div class="flexCol" style="gap: 2rem">
+      <div
+        class="flexed gapSm"
+        *ngFor="let c of report.commenti"
+        [ngStyle]="{ flexDirection: c.utente ? 'row-reverse' : 'row' }"
+      >
+        <div
+          class="id flexCentered textGray semiBold"
+          style="font-size: 13px"
+          [ngStyle]="{
+            backgroundColor: !c.utente ? '#e2eaff' : '#0036c0',
+            color: !c.utente ? '#0036c0' : '#e2eaff'
+          }"
+        >
+          {{ c.utente ? c.utente.nome : "Tu" }}
+        </div>
+        <div class="flexCol gapXs" style="width: 100%">
+          <div
+            class="commentBox textGray"
+            style="font-size: 13.5px; font-weight: 410"
+          >
+            {{ c.testo }}
+          </div>
+          <div
+            class="flexed"
+            [ngStyle]="{ justifyContent: c.utente ? 'flex-start' : 'flex-end' }"
+          >
+            <p class="sentAt">{{ util.dateToString(c.dataCreazione) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

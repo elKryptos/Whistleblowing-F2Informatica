@@ -1,0 +1,123 @@
+<div class="fullContainer flexCentered">
+  <app-error-alert
+    [message]="alert.message"
+    *ngIf="alert.visible && alert.err"
+  />
+  <app-navbar />
+
+  <!-- FORM PER SUBMITTARE UN REPORT -->
+  <form
+    *ngIf="!codeGenerated"
+    class="flexCol gapMid reportForm"
+    (submit)="createReport()"
+  >
+    <div class="flexed gapL">
+      <div class="left flexCol gapMid">
+        <div class="inputBox flexCol gapXs" *ngFor="let i of leftInputs">
+          <label class="textGray"
+            >{{ i.label }}
+            <span *ngIf="i.required" style="color: red">*</span></label
+          >
+          <input
+            type="{{ i.type }}"
+            class="input textMid"
+            [(ngModel)]="data[i.field]"
+            name="{{ i.field }}"
+          />
+        </div>
+        <div class="inputBox flexCol gapXs">
+          <label class="textGray"
+            >Come sei coinvolto nell'accaduto?
+            <span style="color: red">*</span></label
+          >
+          <select
+            class="select textMid"
+            name="howInvolvedSelect"
+            [(ngModel)]="data['coinvolgimento']"
+          >
+            <option value=""></option>
+            <option *ngFor="let o of options" value="{{ o }}">{{ o }}</option>
+          </select>
+        </div>
+        <div class="inputBox flexCol gapXs">
+          <label class="textGray"
+            >Hai riportato i fatti accaduti ad altre organizzazioni e/o
+            invividui? <span style="color: red">*</span></label
+          >
+          <select
+            class="select textMid"
+            name="reportedSelect"
+            [(ngModel)]="data['segnalazionePrecedente']"
+            (ngModelChange)="
+              data.segnalazionePrecedente == 'Si'
+                ? (reportedYet = true)
+                : (reportedYet = false)
+            "
+          >
+            <option value=""></option>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="inputBox flexCol gapXs" *ngIf="reportedYet">
+          <label class="textGray"
+            >Cordialmente, elenca le organizzazioni e/o gli indivudui a cui hai
+            riportato l'accaduto <span style="color: red">*</span></label
+          >
+          <textarea
+            name="reportedList"
+            cols="30"
+            rows="10"
+            class="textarea textMid"
+            [(ngModel)]="data['personeInformate']"
+          ></textarea>
+        </div>
+      </div>
+      <div class="right flexCol gapMid">
+        <div class="inputBox flexCol gapXs" *ngFor="let i of rightInputs">
+          <label class="textGray"
+            >{{ i.label }}
+            <span *ngIf="i.required" style="color: red">*</span></label
+          >
+          <textarea
+            name="{{ i.field }}"
+            cols="30"
+            rows="10"
+            class="textarea textMid"
+            [(ngModel)]="data[i.field]"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <button
+      class="mainButton mainBlueBg textWhite textL semiBold"
+      style="padding: 0.75rem 1.5rem"
+    >
+      Invia
+    </button>
+  </form>
+
+  <!-- CODICE DOPO IL SUBMIT DEL REPORT -->
+  <div class="flexCol gapSm" *ngIf="codeGenerated">
+    <p>Ecco il codice identificativo del tuo report</p>
+    <div class="inputSend flexed">
+      <div class="inputGhost textMid textGray">{{ codeGenerated }}</div>
+      <button
+        class="flexCentered send textMid mainBlueBg textWhite"
+        (click)="util.copyToClipboard(codeGenerated)"
+      >
+        Copia
+      </button>
+    </div>
+    <div class="flexCentered" style="width: 100%">
+      <button
+        class="linkButton transition textMid textGray flexAligned gapXs"
+        style="margin-top: 2rem"
+        (click)="util.redirect('/')"
+      >
+        Torna alla home
+        <ng-icon name="lucideMoveRight" size="16" style="margin-top: 1px" />
+      </button>
+    </div>
+  </div>
+</div>

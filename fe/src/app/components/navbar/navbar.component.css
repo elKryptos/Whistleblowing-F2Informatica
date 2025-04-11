@@ -1,0 +1,19 @@
+.navContainer {
+  height: 5rem;
+  width: 100%;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 12rem;
+  z-index: 998;
+  background-color: #f5f7fa;
+}
+
+.userIcon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 25px;
+  background-color: #ebebeb;
+  cursor: pointer;
+}

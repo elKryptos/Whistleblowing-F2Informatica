@@ -1,0 +1,50 @@
+<div class="flexCol">
+  <div
+    class="header flexAligned"
+    [ngStyle]="{ borderRadius: !summaryOpen ? '10px' : '' }"
+    (click)="summaryOpen = !summaryOpen"
+  >
+    <h4 class="textGray textSm">Riassunto della segnalazione</h4>
+    <ng-icon
+      name="lucideChevronDown"
+      size="20"
+      color="#272727"
+      [ngStyle]="{ transform: summaryOpen ? 'rotate(180deg)' : 'rotate(0)' }"
+    />
+  </div>
+  <div class="content flexCol gapMid" *ngIf="summaryOpen">
+    <div class="flexed gapSm" *ngFor="let r of rows; let i = index">
+      <div *ngFor="let q of r" style="width: 50%">
+        <div class="flexed gapXs">
+          <div class="id flexCentered textSm semiBold">{{ i + 1 + q.val }}</div>
+          <div class="flexCol gapXXS">
+            <p class="q textGray">{{ q.label }}</p>
+            <p class="a textSm">{{ report[q.field] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="left flexCol gapMid">
+      <div class="qBox flexCol gapXs" *ngFor="let q of qsLeft; let i = index">
+        <div class="flexed gapXs">
+          <div class="id flexCentered textSm semiBold">{{ i + 1 }}</div>
+          <div class="flexCol gapXXS">
+            <p class="q textGray">{{ q.label }}</p>
+            <p class="a textSm">{{ report[q.field] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right flexCol gapMid">
+      <div class="qBox flexCol gapXs" *ngFor="let q of qsRight; let i = index">
+        <div class="flexed gapXs">
+          <div class="id flexCentered textSm semiBold">{{ 5 + i }}</div>
+          <div class="flexCol gapXXS">
+            <p class="q textGray">{{ q.label }}</p>
+            <p class="a textSm">{{ report[q.field] }}</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

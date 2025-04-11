@@ -1,0 +1,35 @@
+<div class="fullContainer flexCol">
+  <app-error-alert
+    [message]="alert.message"
+    *ngIf="alert.visible && alert.err"
+  />
+  <app-navbar />
+
+  <div class="tableContainer">
+    <table>
+      <tr class="rH">
+        <th *ngFor="let h of headers">{{ h }}</th>
+      </tr>
+      <tr class="row">
+        <td>{{ util.dateToString(report.dataCreazione) }}</td>
+        <td>{{ util.dateToString(report.dataAggiornamento) }}</td>
+        <td>{{ util.dateToString(report.scadenza) }}</td>
+        <td>
+          <div
+            class="statusBox"
+            style="font-size: 13.5px"
+            [ngStyle]="{
+              backgroundColor: !report.stato ? '#E2F5F4' : '#FFC9C9',
+              color: !report.stato ? '#12B3A8' : '#8B1313'
+            }"
+          >
+            {{ util.boolToString(report.stato) }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <app-answers-summary [report]="report" style="margin-top: 2.5rem" />
+  <app-comments [report]="report" style="margin-top: 2.5rem" />
+</div>

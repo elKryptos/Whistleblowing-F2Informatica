@@ -1,0 +1,12 @@
+.right {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 1rem;
+}
+
+.circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 25px;
+}

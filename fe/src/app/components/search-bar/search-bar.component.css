@@ -1,0 +1,10 @@
+.input {
+  padding: 0.5rem !important;
+  font-size: 13px !important;
+  border-radius: 7px !important;
+  border-color: transparent;
+}
+
+.mainButton {
+  padding: 0.5rem 0.75rem;
+}

@@ -1,0 +1,91 @@
+<div class="dashboardContainer flexed gapMid">
+  <!-- SIDEBAR -->
+  <app-sidebar
+    [items]="items"
+    [tabSelected]="tabSelected"
+    (e)="onTab($event)"
+  />
+
+  <!-- MAIN CONTENT -->
+  <div
+    class="dashboardContentBox"
+    [ngStyle]="{ overflowY: modalVisible ? 'hidden' : 'scroll' }"
+  >
+    <!-- MODALS -->
+    <app-add-user-modal
+      *ngIf="modalVisible == 'addUser'"
+      (cancel)="onClose($event)"
+    />
+    <app-delete-user-modal
+      *ngIf="modalVisible == 'deleteUser'"
+      (cancel)="onClose($event)"
+    />
+    <app-report-assignment
+      *ngIf="modalVisible == 'assignment'"
+      (cancel)="onClose($event)"
+      (refresh)="onReportTab(reportTabSelected)"
+      [recipients]="recipients"
+      [report]="reportSelected"
+    />
+
+    <!-- HEADER -->
+    <app-dashboard-header />
+
+    <!-- CONTENT -->
+    <div class="contentBox" *ngIf="tabSelected != 'Statistiche'">
+      <!-- GESTIONE UTENTI -->
+      <div *ngIf="tabSelected == 'Utenti'">
+        <app-users-management (openModal)="onOpen($event)" [users]="users" />
+      </div>
+
+      <!-- SEGNALAZIONI -->
+      <div *ngIf="tabSelected == 'Segnalazioni'" class="flexCol gapSm">
+        <div
+          class="flexAligned"
+          style="width: 100%; justify-content: space-between"
+        >
+          <app-reports-tabs
+            [tabs]="reportsTabs"
+            (e)="onReportTab($event)"
+            [tabSelected]="reportTabSelected"
+          />
+
+          <app-search-bar />
+        </div>
+        <app-reports-table
+          (e)="onOpen($event)"
+          [role]="'admin'"
+          [reports]="reports"
+          (rs)="reportSelected = $event"
+        />
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="separator" *ngIf="tabSelected == 'Statistiche'"></div>
+    <div
+      class="flexCol gapSm"
+      *ngIf="tabSelected == 'Statistiche'"
+      style="width: 100%; height: calc(100% - 5rem)"
+    >
+      <app-overview />
+
+      <div
+        class="flexed"
+        style="
+          height: 100%;
+          width: 100%;
+          gap: 1.5rem;
+          justify-content: space-between;
+        "
+      >
+        <div style="width: 80%">
+          <app-chart-preview />
+        </div>
+        <div style="width: 20%">
+          <app-status-reports />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

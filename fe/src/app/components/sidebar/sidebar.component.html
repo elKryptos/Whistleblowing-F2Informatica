@@ -1,0 +1,44 @@
+<div class="sideBarContainer flexCol gapL">
+  <div class="sideBarLogo">
+    <img
+      src="https://calendar-bucket-images.s3.eu-west-3.amazonaws.com/F2LogoWhite.svg"
+      alt="F2Logo"
+      class="logo"
+    />
+  </div>
+  <div class="items flexCol" style="gap: 2rem">
+    <div
+      class="sideBarItem flexAligned gapXs"
+      *ngFor="let i of items"
+      (click)="onSelect(i.label)"
+      [ngStyle]="{
+        background:
+          tabSelected == i.label
+            ? 'linear-gradient(to right,rgb(255, 255, 255, 0.25),rgb(255, 255, 255, 0.025))'
+            : ''
+      }"
+    >
+      <ng-icon name="{{ i.icon }}" size="20" color="white" />
+      <p class="textMid textWhite" style="margin-top: 1px">{{ i.label }}</p>
+    </div>
+  </div>
+  <div class="sideBarFooter flexCol gapMid" style="width: 100%">
+    <div class="separator"></div>
+    <div class="footerItems flexCol gapXs" style="width: 100%">
+      <div
+        class="sideBarItem flexAligned gapXs"
+        *ngFor="let i of footerItems"
+        (click)="onSelect(i.label)"
+      >
+        <ng-icon name="{{ i.icon }}" size="20" color="white" />
+        <p class="textMid textWhite" style="margin-top: 1px">
+          {{ i.label }}
+        </p>
+      </div>
+      <div class="footerItem flexAligned gapXs" (click)="signOut()">
+        <ng-icon name="lucideLogOut" size="20" color="#E35553" />
+        <p class="textMid" style="margin-top: 1px; color: #e35553">Esci</p>
+      </div>
+    </div>
+  </div>
+</div>

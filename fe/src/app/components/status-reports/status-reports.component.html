@@ -1,0 +1,15 @@
+<div class="right flexCol gapSm">
+  <h4>Stato</h4>
+  <div class="separator"></div>
+  <div class="flexCol" style="gap: 2rem">
+    <div class="statusBoxes" *ngFor="let s of statusItems">
+      <div class="flexAligned gapSm">
+        <div class="circle" [ngStyle]="{ backgroundColor: s.bg }"></div>
+        <div class="flexCol gapXXS">
+          <p style="font-size: 12px; color: #a4a4a4">{{ s.label }}</p>
+          <h4>{{ s.data }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="overviewContainer flexCol" style="gap: 2rem">
+  <div class="flexCol gapSm">
+    <h4>Overview</h4>
+
+    <div class="items flexAligned gapSm">
+      <div class="item flexAligned gapXs" *ngFor="let i of items">
+        <div class="iconBox flexCentered" [ngStyle]="{ backgroundColor: i.bg }">
+          <ng-icon name="{{ i.icon }}" size="20" color="{{ i.color }}" />
+        </div>
+        <div class="flexCol gapXXS">
+          <p style="font-size: 12px; color: #a4a4a4">{{ i.label }}</p>
+          <h4 style="align-self: flex-end">
+            {{ i.data }}
+            <span *ngIf="i.label == 'Tempo medio' && i.data">ore</span>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

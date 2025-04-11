@@ -1,0 +1,71 @@
+<div class="fullOverlay">
+  <div class="modalContainer flexCol gapMid">
+    <div class="flexCol gapSm">
+      <div class="flexAligned gapXs textGray">
+        <h4 class="textSm" style="font-weight: 500">Recipient</h4>
+        <div
+          class="recipientBox"
+          [ngClass]="
+            report.utente ? 'lightGreenBg textGreen' : 'lightRedBg textRed'
+          "
+        >
+          {{ report.utente?.email || "Non assegnata" }}
+        </div>
+      </div>
+      <div class="inputBox flexCol gapXs">
+        <label>Scegli a chi assegnare questa segnalazione</label>
+        <select
+          name="recipient"
+          class="select"
+          (change)="reportAssignment()"
+          [(ngModel)]="recipient"
+        >
+          <option value=""></option>
+          <option *ngFor="let r of recipients" [ngValue]="r">
+            {{ r.email }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flexCol gapSm">
+      <div class="flexAligned gapXs textGray">
+        <h4 class="textSm" style="font-weight: 500">Priorità</h4>
+        <div
+          class="recipientBox"
+          [ngStyle]="{
+            backgroundColor:
+              levels[util.myFindIndex(levels, report.priorita)].bg,
+            color: levels[util.myFindIndex(levels, report.priorita)].color
+          }"
+        >
+          {{ report.priorita || "Nessuna priorita" }}
+        </div>
+      </div>
+      <div class="inputBox flexCol gapXs">
+        <label>Cambia la priorità</label>
+        <select
+          name="priority"
+          class="select"
+          (change)="prioriryAssignment()"
+          [(ngModel)]="priority"
+        >
+          <option value=""></option>
+          <option *ngFor="let l of levels" [ngValue]="l.label">
+            {{ l.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flexCentered">
+      <button
+        class="thirdButton textSm"
+        style="width: 10rem"
+        (click)="cancel.emit('')"
+      >
+        Chiudi
+      </button>
+    </div>
+  </div>
+</div>

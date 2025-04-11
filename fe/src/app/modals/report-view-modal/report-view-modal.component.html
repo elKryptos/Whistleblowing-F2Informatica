@@ -1,0 +1,27 @@
+<div class="fullOverlay">
+  <div class="modalContainer flexColCentered gapMid">
+    <div style="width: 100%" class="flexCol gapSm">
+      <app-answers-summary [report]="report" />
+      <app-comments [report]="report" />
+    </div>
+    <div class="flexCentered">
+      <div class="flexAligned gapSm">
+        <button
+          class="thirdButton textSm"
+          style="width: 10rem"
+          (click)="cancel.emit('')"
+        >
+          Chiudi
+        </button>
+        <button
+          *ngIf="!report.stato"
+          class="mainButton mainBlueBg textWhite textSm"
+          style="width: 10rem"
+          (click)="closeReport()"
+        >
+          Completata
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

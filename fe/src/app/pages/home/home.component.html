@@ -1,0 +1,32 @@
+<div class="fullContainer flexCentered">
+  <app-error-alert
+    [message]="alert.message"
+    *ngIf="alert.visible && alert.err"
+  />
+  <app-navbar />
+  <div class="flexColCentered gapL">
+    <button
+      class="secondaryButton textMid transition"
+      (click)="router.navigateByUrl('report')"
+    >
+      Segnala
+    </button>
+
+    <!-- FORM PER CERCARE UN REPORT TRAMITE CODICE -->
+    <form class="flexColCentered gapSm" (submit)="findReport()">
+      <p>Hai già eseguito una segnalazione? Inserisci il codice</p>
+      <div class="inputSend flexed">
+        <input
+          type="text"
+          class="inputGhost textGray textMid"
+          [(ngModel)]="code"
+          name="code"
+          autocomplete="off"
+        />
+        <button class="flexCentered send textMid mainBlueBg">
+          <ng-icon name="lucideMoveRight" size="20" color="white" />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

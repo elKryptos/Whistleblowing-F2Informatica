@@ -1,0 +1,29 @@
+<div class="fullContainer flexCentered">
+  <app-error-alert
+    [message]="alert.message"
+    *ngIf="alert.visible && alert.err"
+  />
+  <app-navbar />
+
+  <form class="flexCol gapMid" style="width: 30rem" (submit)="signIn()">
+    <div class="inputBox flexCol gapXs" *ngFor="let i of inputs">
+      <label class="textGray">{{ i.label }}</label>
+      <input
+        type="{{ i.type }}"
+        name="{{ i.field }}"
+        class="input textMid textGray"
+        [(ngModel)]="creds[i.field]"
+      />
+      <p
+        *ngIf="i.field == 'password'"
+        class="linkButton textSm"
+        (click)="util.redirect('resetPassword')"
+      >
+        Password dimenticata?
+      </p>
+    </div>
+    <div class="flexCentered">
+      <button class="mainButton textWhite mainBlueBg textMid">Accedi</button>
+    </div>
+  </form>
+</div>

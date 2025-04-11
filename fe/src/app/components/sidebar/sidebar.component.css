@@ -1,0 +1,42 @@
+.sideBarContainer {
+  height: 100%;
+  width: 12.5rem;
+  position: relative;
+}
+
+.sideBarFooter {
+  position: absolute;
+  bottom: 0;
+}
+
+.logo {
+  width: 75%;
+  object-fit: cover;
+}
+
+.sideBarItem {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.footerItem {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sideBarItem:hover {
+  background: linear-gradient(
+    to right,
+    rgb(255, 255, 255, 0.25),
+    rgb(255, 255, 255, 0.025)
+  );
+}
+
+.separator {
+  background-color: rgb(255, 255, 255, 0.3);
+  margin-left: -4rem;
+  width: calc(100% + 2rem);
+}

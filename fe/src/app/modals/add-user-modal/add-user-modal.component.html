@@ -1,0 +1,36 @@
+<div class="fullOverlay">
+  <div class="modalContainer flexCol gapMid">
+    <h3>Aggiungi un utente</h3>
+    <form class="flexCol gapMid" (submit)="signUp()">
+      <div class="flexCol gapSm">
+        <div class="inputBox flexCol gapXs" *ngFor="let i of inputs">
+          <label>{{ i.label }}</label>
+          <input
+            type="{{ i.type }}"
+            name="{{ i.field }}"
+            class="input"
+            [(ngModel)]="data[i.field]"
+          />
+        </div>
+        <div class="inputBox flexCol gapXs">
+          <label>Scegli il ruolo</label>
+          <select name="role" class="select" [(ngModel)]="data['ruolo']">
+            <option value="{{ o }}" *ngFor="let o of options">{{ o }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="flexCentered">
+        <button class="mainButton textSm" style="width: 10rem">Aggiungi</button>
+      </div>
+    </form>
+    <div class="flexCentered" style="margin-top: -1.5rem">
+      <button
+        class="thirdButton textSm"
+        style="width: 10rem"
+        (click)="cancel.emit('')"
+      >
+        Annulla
+      </button>
+    </div>
+  </div>
+</div>

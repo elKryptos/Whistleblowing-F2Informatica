@@ -1,0 +1,44 @@
+.tableContainer {
+  border: 2px solid #ebebeb;
+  border-radius: 7px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 7px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.rH {
+  background-color: #f7f7f7;
+  color: #a4a4a4;
+}
+
+.row {
+  background-color: white;
+  color: #272727;
+  cursor: pointer;
+}
+
+td {
+  padding: 1rem 0.75rem;
+  max-width: 12rem;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+th {
+  padding: 0.5rem 0.75rem;
+  max-width: 12rem;
+  font-size: 13px;
+  font-weight: 500 !important;
+  text-align: left;
+}
+
+.row:hover {
+  background-color: #f7f7f7;
+}

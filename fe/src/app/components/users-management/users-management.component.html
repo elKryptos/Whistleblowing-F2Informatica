@@ -1,0 +1,48 @@
+<div class="usersManagementBox flexCol gapSm">
+  <button
+    class="mainButton mainBlueBg flexAligned gapXXS"
+    (click)="openModal.emit('addUser')"
+  >
+    <p class="dashboardMainButtonP textWhite" style="margin-top: 1px">
+      Aggiungi
+    </p>
+    <ng-icon name="lucidePlus" size="14" />
+  </button>
+
+  <div class="tableContainer">
+    <table>
+      <tr class="rH">
+        <th style="text-align: center">Id</th>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Ruolo</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+      <tr class="row" *ngFor="let u of users">
+        <td [width]="10">
+          <div
+            class="flexCentered"
+            style="
+              width: 2rem;
+              height: 2rem;
+              border-radius: 25px;
+              background-color: #f7f7f7;
+            "
+          >
+            {{ u.id }}
+          </div>
+        </td>
+        <td [width]="100">{{ u.nome }}</td>
+        <td [width]="100">{{ u.cognome }}</td>
+        <td [width]="100">{{ u.ruolo }}</td>
+        <td [width]="250">{{ u.email }}</td>
+        <td style="display: flex; justify-content: flex-end">
+          <button class="thirdButton" (click)="openModal.emit('deleteUser')">
+            Elimina
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

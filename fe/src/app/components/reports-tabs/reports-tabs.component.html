@@ -1,0 +1,20 @@
+<div class="reportsTabs flexed gapSm">
+  <div
+    class="tab flexCentered transition"
+    *ngFor="let t of tabs"
+    [ngStyle]="{
+      backgroundColor: tabSelected == t ? '#0036c0' : 'transparent',
+      borderColor: tabSelected == t ? 'transparent' : '#a4a4a4'
+    }"
+    (click)="e.emit(t)"
+  >
+    <p
+      [ngStyle]="{
+        color: tabSelected == t ? 'white' : '#a4a4a4'
+      }"
+      class="dashboardMainButtonP"
+    >
+      {{ t }}
+    </p>
+  </div>
+</div>
